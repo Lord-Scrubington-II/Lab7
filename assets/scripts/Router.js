@@ -38,6 +38,7 @@ export class Router {
      * router instance using the 'this' keyword. Substitute 'home' for the variable
      * page
      */
+    this[page] = pageFunc;
   }
 
   /**
@@ -65,5 +66,29 @@ export class Router {
      *     and URL + hash to history
      *  4. Finally, call the stored function for the given page
      */
+    if(this[page] === null || this[page] === undefined) {
+      console.error(`Page function for ${page} does not exist.`)
+      return;
+    }
+
+    let hash = page === "home" ? "" : '#' + page;
+    let route = window.location.origin;
+
+    //first param of history.pushState will be passed as event param in the popstate event
+    if(!statePopped && window.location.hash !== hash) {
+      route = window.location.origin + hash;
+      /*
+      let toPage = window.location.hash.substring(1);
+      console.log(toPage);
+      let currentPage = toPage == "" ? "home" : toPage;
+      */
+      let state = {"name": page};
+      history.pushState(state, "", route);
+      //console.log(`added ${currentPage} to history`);
+      console.log(`added ${page} to history`);
+    }
+
+    console.log(`Navigating to ${page} at route ${route}`);
+    this[page]();
   }
 }
