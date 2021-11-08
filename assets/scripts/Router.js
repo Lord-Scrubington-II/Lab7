@@ -72,7 +72,7 @@ export class Router {
     }
 
     let hash = page === "home" ? "" : '#' + page;
-    let route = window.location.href;
+    let route = window.location.href + 'Lab7/';
 
     //first param of history.pushState will be passed as event param in the popstate event
     if(!statePopped && window.location.hash !== hash) {
