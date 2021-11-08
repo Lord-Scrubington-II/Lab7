@@ -72,11 +72,11 @@ export class Router {
     }
 
     let hash = page === "home" ? "" : '#' + page;
-    let route = window.location.origin;
+    let route = window.location.href;
 
     //first param of history.pushState will be passed as event param in the popstate event
     if(!statePopped && window.location.hash !== hash) {
-      route = window.location.origin + hash;
+      route = window.location.href + hash;
       /*
       Note: why did this not work? My theory is that this is because
       when the browser looks at the top of the page history stack to determine where to go back to,
