@@ -78,6 +78,11 @@ export class Router {
     if(!statePopped && window.location.hash !== hash) {
       route = window.location.origin + hash;
       /*
+      Note: why did this not work? My theory is that this is because
+      when the browser looks at the top of the page history stack to determine where to go back to,
+      it actually looks at the page *one level beneath* the top of the stack and goes to *that* before
+      popping the top element off. This would explain as well why the event.state in the popstate event is 
+      null if one presses the back button after only adding one page to the history stack.
       let toPage = window.location.hash.substring(1);
       console.log(toPage);
       let currentPage = toPage == "" ? "home" : toPage;

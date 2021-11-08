@@ -11,7 +11,6 @@ const urlsToCache = [
   'https://introweb.tech/assets/json/pumpkinPie.json'
 ];
 
-
 // Once the service worker has been installed, feed it some initial URLs to cache
 self.addEventListener('install', function (event) {
   /**
